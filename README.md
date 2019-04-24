@@ -1,7 +1,7 @@
 
 # Bouwkamp Code Generator
 
-This Inkscape extension allows you to generate simple perfect squared squares (SPSS) from Bouwkamp codes and table codes.
+This Inkscape extension allows you to generate squared squares and squared rectangles from Bouwkamp codes and table codes.
 
 You can paste Bouwkamp codes with or without various formatting characters (like brackets) and convert them to the corresponding squares. The following three simple perfect squared squares (SPSS) that were generated from Bouwkamp codes.
 
@@ -13,8 +13,6 @@ You can paste Bouwkamp codes with or without various formatting characters (like
 2. Restart Inkscape.
 
 ## Usage
-
-![A screenshot of the Inkscape extension.](images/screenshot-bouwkamp-code-generator.png)
 
 1. Open the extension from the extension menu `Extensions` > `Render` > `Bouwkamp code...`.
 2. Paste a valid Bouwkamp code or table code like these:
