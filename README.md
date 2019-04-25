@@ -9,12 +9,14 @@ You can paste Bouwkamp codes with or without various formatting characters (like
 
 ## Installation
 
-1. Copy the files `render_bouwkamp_code.inx` and `render_bouwkamp_code.py` to your `~/.config/inkscape/extensions/` directory.
+1. Copy the files `render_bouwkamp_code.inx` and `render_bouwkamp_code.py` to your Inkscape `extensions` directory. The location of this directory depends on your operating system:
+   - Linux, macOS: `~/.config/inkscape/extensions/`
+   - Windows: `C:\Users\<USERNAME>\AppData\Roaming\inkscape\extensions\`
 2. Restart Inkscape.
 
 ## Usage
 
-1. Open the extension from the extension menu `Extensions` > `Render` > `Bouwkamp code...`.
+1. Open the extension from the extension menu under `Extensions > Render > Bouwkamp code...`.
 2. Paste a valid Bouwkamp code or table code like these:
     - `22, 110, 110 [60, 50], [23, 27], [24, 22, 14], [7, 16], [8, 6], [12, 15], [13], [2, 28], [26], [4, 21, 3], [18], [17]`
     - `21 112 112 (50,35,27)(8,19)(15,17,11)(6,24)(29,25,9,2)(7,18)(16)(42)(4,37)(33)`
