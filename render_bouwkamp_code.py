@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
 BSD 3-Clause License
 
@@ -36,8 +36,7 @@ Bouwkamp codes and table codes.
 
 import re
 import inkex
-import simplestyle
-from simpletransform import computePointInNode
+from lxml import etree
 
 class BouwkampCodeExtension(inkex.Effect):
     """
@@ -46,51 +45,25 @@ class BouwkampCodeExtension(inkex.Effect):
     """
 
     def __init__(self):
-
         inkex.Effect.__init__(self)
-
-        self.OptionParser.add_option(
-            '--tab',
-            action='store',
-            type='string',
-            dest='current-tab'
+        self.arg_parser.add_argument('--tab')
+        self.arg_parser.add_argument('--bouwkamp_code', default='21, 112, 112, [50, 35, 27], [8, 19], [15, 17, 11], [6, 24], [29, 25, 9, 2], [7, 18], [16], [42], [4, 37], [33]', help='The Bouwkamp code.'
         )
-
-        self.OptionParser.add_option(
-            '--bouwkamp-code',
-            action='store',
-            type='string',
-            dest='bouwkamp_code',
-            default='21, 112, 112, [50, 35, 27], [8, 19], [15, 17, ' +
-            '11], [6, 24], [29, 25, 9, 2], [7, 18], [16], [42], [4, 37], [33]',
-            help='The Bouwkamp code.'
-        )
-
-        self.OptionParser.add_option(
-            '--wrap-in-group',
-            action='store',
-            type='inkbool',
-            dest='wrap_in_group',
-            default=True,
-            help='Should the generated items be wrapped inside a group.'
+        self.arg_parser.add_argument('--wrap_in_group', type=inkex.Boolean,  default=True, help='Should the generated items be wrapped inside a group.'
         )
 
     def effect(self):
-        """
-        This is the main entry point for the extension.
-        """
-
         # compute center of the view
-        center = tuple(computePointInNode(list(self.view_center), self.current_layer))
+        center = self.svg.namedview.center
 
         # create the group that holds all the elements
-        container = self.current_layer
+        container = self.svg.get_current_layer()
         if self.options.wrap_in_group:
             group_attributes = {
                 inkex.addNS('label', 'inkscape'): 'BouwkampSquares',
                 'transform': 'translate' + str(center)
             }
-            group = inkex.etree.SubElement(self.current_layer, 'g', group_attributes)
+            group = etree.SubElement(self.svg.get_current_layer(), 'g', group_attributes)
             container = group
 
         # parse the bouwkamp code string as a list
@@ -171,7 +144,7 @@ class BouwkampCodeExtension(inkex.Effect):
         rectangle_style = {
             'opacity': '1',
             'stroke': '#000000',
-            'stroke-width': str(self.unittouu('2px')),
+            'stroke-width': str(self.svg.unittouu('2px')),
             'fill': '#FFFFFF'
         }
 
@@ -181,7 +154,7 @@ class BouwkampCodeExtension(inkex.Effect):
 
         rectangle_attributes = {
             'transform': transform,
-            'style': simplestyle.formatStyle(rectangle_style),
+            'style': str(inkex.Style(rectangle_style)),
             inkex.addNS('label', 'inkscape'): "Rectangle "+str(dimension[0]),
             'x': str(position[0]),
             'y': str(position[1]),
@@ -189,8 +162,7 @@ class BouwkampCodeExtension(inkex.Effect):
             'height': str(dimension[1])
         }
 
-        inkex.etree.SubElement(parent, inkex.addNS('rect', 'svg'), rectangle_attributes)
+        etree.SubElement(parent, inkex.addNS('rect', 'svg'), rectangle_attributes)
 
 if __name__ == '__main__':
-    EXTENSION = BouwkampCodeExtension()
-    EXTENSION.affect()
+    BouwkampCodeExtension().run()
