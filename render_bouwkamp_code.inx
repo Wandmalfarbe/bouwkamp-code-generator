@@ -2,14 +2,10 @@
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <_name>Bouwkamp code</_name>
     <id>de.pascalwagler.inkscape.bouwkamp</id>
-
-    <dependency type="executable" location="extensions">render_bouwkamp_code.py</dependency>
-    <dependency type="executable" location="extensions">inkex.py</dependency>
-
-	<param name="tab" type="notebook">
+    <param name="tab" type="notebook">
 		<page name="settings" _gui-text="Settings">
-			<param name="bouwkamp-code" type="string" _gui-text="Bouwkamp code:">21, 112, 112, [50, 35, 27], [8, 19], [15, 17, 11], [6, 24], [29, 25, 9, 2], [7, 18], [16], [42], [4, 37], [33]</param>
-			<param name="wrap-in-group" type="boolean" _gui-text="Wrap in group">true</param>
+			<param name="bouwkamp_code" type="string" _gui-text="Bouwkamp code:">21, 112, 112, [50, 35, 27], [8, 19], [15, 17, 11], [6, 24], [29, 25, 9, 2], [7, 18], [16], [42], [4, 37], [33]</param>
+			<param name="wrap_in_group" type="boolean" _gui-text="Wrap in group">true</param>
 		</page>
 		<page name="help" _gui-text="Help">
 			<_param name="help_text" type="description" xml:space="preserve">
@@ -19,14 +15,12 @@ You can paste Bouwkamp codes with or without various formatting characters (like
 </_param>
 		</page>
 	</param>
-
     <effect>
         <object-type>all</object-type>
         <effects-menu>
             <submenu _name="Render"/>
         </effects-menu>
     </effect>
-
     <script>
         <command reldir="extensions" interpreter="python">render_bouwkamp_code.py</command>
     </script>
