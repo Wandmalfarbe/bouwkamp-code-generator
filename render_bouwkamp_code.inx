@@ -18,9 +18,7 @@ You can paste Bouwkamp codes with or without various formatting characters (like
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu _name="FabLab Chemnitz">
-                <submenu _name="Render"/>
-            </submenu>
+            <submenu _name="Render"/>
         </effects-menu>
     </effect>
     <script>
